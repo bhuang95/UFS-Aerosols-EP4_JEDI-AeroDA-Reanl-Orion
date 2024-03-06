@@ -6,7 +6,7 @@ METDIR_NRT=${METDIR_NRT:-"/scratch2/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/J
 NMEM_ENKF=${NMEM_ENKF:-"20"}
 NTILES=${NTILES:-"6"}
 CYCINTHR=${CYCINTHR:-"6"}
-NDATE=${NDATE:-"/scratch2/NCEPDEV/nwprod/NCEPLIBS/utils/prod_util.v1.1.0/exec/ndate"}
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 
 NTOT=$((NMEM_ENKF * NTILES))
 

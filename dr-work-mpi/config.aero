@@ -15,7 +15,8 @@ case ${machine} in
     AERO_INPUTS_DIR="/scratch1/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/JEDI-FV3/NRTdata_UFS-Aerosols/gocart_emissions/"
     ;;
   "ORION")
-    AERO_INPUTS_DIR="/work2/noaa/global/wkolczyn/noscrub/global-workflow/gocart_emissions"
+    #AERO_INPUTS_DIR="/work2/noaa/global/wkolczyn/noscrub/global-workflow/gocart_emissions"
+    AERO_INPUTS_DIR="/work/noaa/wrf-chem/bhuang/NRTdata_UFS-Aerosols/gocart_emissions/"
     ;;
   "S4")
     AERO_INPUTS_DIR="/data/prod/glopara/gocart_emissions"

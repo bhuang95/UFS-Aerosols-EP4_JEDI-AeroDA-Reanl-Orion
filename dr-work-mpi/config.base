@@ -6,7 +6,7 @@
 echo "BEGIN: config.base"
 
 # Machine environment
-export machine="HERA"
+export machine="ORION"
 
 # EMC parallel or NCO production
 export RUN_ENVIR="emc"

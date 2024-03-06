@@ -1,1 +1,1 @@
-/scratch1/BMC/chem-var/pagowski/exec/fv32ll_reanalysis.x
+/work/noaa/wrf-chem/bhuang/NRTdata_UFS-Aerosols/src_omp/exec/fv32ll_reanalysis.x

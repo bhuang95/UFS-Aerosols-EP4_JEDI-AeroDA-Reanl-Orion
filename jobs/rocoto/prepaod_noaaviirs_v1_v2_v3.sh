@@ -16,7 +16,8 @@ set -x
 export HOMEjedi=${HOMEjedi:-"/scratch1/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/JEDI-FV3/expCodes/fv3-bundle/V20240115/build/"}
 . ${HOMEjedi}/jedi_module_base.hera.sh
 module load nco
-export LD_LIBRARY_PATH="/home/Mariusz.Pagowski/MAPP_2018/libs/fortran-datetime/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+#export LD_LIBRARY_PATH="/home/Mariusz.Pagowski/MAPP_2018/libs/fortran-datetime/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/home/mpagowsk/mapp_2018/libs/fortran-datetime/lib"
 status=$?
 [[ $status -ne 0 ]] && exit $status
 export PATH="/scratch2/BMC/wrfruc/Samuel.Trahan/viirs-thinning/mpiserial/exec:$PATH"
@@ -55,7 +56,7 @@ AODSAT=${AODSAT:-"npp"}
 OBSDIR_NRT=${OBSDIR_NRT:-"/scratch1/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/JEDI-FV3/NRTdata_UFS-Aerosols/AODObs/${AODTYPE}/${CASE}"}
 #MISS_NOAA_NPP_RECORD=${MISS_NOAA_NPP_RECORD:-"${HOMEgfs}/dr-work-mpi/xmlFiles/record.miss_NOAAVIIRSnpp"}
 #MISS_NOAA_J01_RECORD=${MISS_NOAA_J01_RECORD:-"${HOMEgfs}/dr-work-mpi/xmlFiles/record.miss_NOAAVIIRSj01"}
-NDATE=${NDATE:-"/scratch2/NCEPDEV/nwprod/NCEPLIBS/utils/prod_util.v1.1.0/exec/ndate"}
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 
 #Define JEDI -related executables
 VIIRSIODA1_EXEC=${HOMEgfs}/exec/viirs2ioda_v1.x

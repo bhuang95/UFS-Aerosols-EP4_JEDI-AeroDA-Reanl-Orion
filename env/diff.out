@@ -1,0 +1,84 @@
+22,27c22,27
+< export MPI_BUFS_PER_PROC=2048
+< export MPI_BUFS_PER_HOST=2048
+< export MPI_GROUP_MAX=256
+< export MPI_MEMMAP_OFF=1
+< export MP_STDOUTMODE="ORDERED"
+< export KMP_AFFINITY=scatter
+---
+> #export I_MPI_ADJUST_ALLREDUCE=5
+> #export MPI_BUFS_PER_PROC=2048
+> #export MPI_BUFS_PER_HOST=2048
+> #export MPI_GROUP_MAX=256
+> #export MPI_MEMMAP_OFF=1
+> #export MP_STDOUTMODE="ORDERED"
+40,41c40,41
+<     export BACK=${BACK:-"YES"}
+<     export sys_tp="ORION"
+---
+>     export BACK="NO"
+>     export sys_tp="HERA"
+48,49c48
+< elif [[ "${step}" = "waveinit" ]] || [[ "${step}" = "waveprep" ]] || [[ "${step}" = "wavepostsbs" ]] || \
+<     [[ "${step}" = "wavepostbndpnt" ]] || [[ "${step}" = "wavepostpnt" ]] || [[ "${step}" == "wavepostbndpntbll" ]]; then
+---
+> elif [[ "${step}" = "waveinit" ]] || [[ "${step}" = "waveprep" ]] || [[ "${step}" = "wavepostsbs" ]] || [[ "${step}" = "wavepostbndpnt" ]] || [[ "${step}" = "wavepostbndpntbll" ]] || [[ "${step}" = "wavepostpnt" ]]; then
+94c93
+<     export APRUNCFP="${launcher} -n \$ncmd ${mpmd_opt}"
+---
+>     export APRUNCFP="${launcher} -n \$ncmd --multi-prog"
+104c103
+<     export APRUNCFP="${launcher} -n \$ncmd ${mpmd_opt}"
+---
+>     export APRUNCFP="${launcher} -n \$ncmd --multi-prog"
+114c113
+<     export APRUNCFP="${launcher} -n \$ncmd ${mpmd_opt}"
+---
+>     export APRUNCFP="${launcher} -n \$ncmd --multi-prog"
+135c134
+<     export APRUN_GSI="${launcher} -n ${npe_gsi:-${npe_anal}} --cpus-per-task=${NTHREADS_GSI}"
+---
+>     export APRUN_GSI="${launcher} -n ${npe_gsi:-${npe_anal}}"
+139c138
+<     export APRUN_CALCINC="${launcher} \$ncmd --cpus-per-task=${NTHREADS_CALCINC}"
+---
+>     export APRUN_CALCINC="${launcher} \$ncmd"
+144c143,144
+<     export APRUN_CYCLE="${launcher} -n ${npe_cycle} --cpus-per-task=${NTHREADS_CYCLE}"
+---
+>     export APRUN_CYCLE="${launcher} -n ${npe_cycle}"
+> 
+148c148
+<     export APRUN_GAUSFCANL="${launcher} -n ${npe_gausfcanl} --cpus-per-task=${NTHREADS_GAUSFCANL}"
+---
+>     export APRUN_GAUSFCANL="${launcher} -n ${npe_gausfcanl}"
+150a151
+> 
+163,166d163
+<     export CFP_MP=${CFP_MP:-"YES"}
+<     export USE_CFP=${USE_CFP:-"YES"}
+<     export APRUNCFP="${launcher} -n \$ncmd ${mpmd_opt}"
+< 
+173,174d169
+< elif [[ "${step}" = "eupd" ]]; then
+< 
+178a174,175
+> elif [[ "${step}" = "eupd" ]]; then
+> 
+184a182,185
+>     export CFP_MP=${CFP_MP:-"YES"}
+>     export USE_CFP=${USE_CFP:-"YES"}
+>     export APRUNCFP="${launcher} -n \$ncmd ${mpmd_opt}"
+> 
+187d187
+<     export OMP_STACKSIZE=512M
+200a201
+> 
+217c218
+<     export USE_CFP="YES"  # Use MPMD for downstream product generation on Orion
+---
+>     export USE_CFP="YES"  # Use MPMD for downstream product generation on Hera
+294a296
+> 
+303a306
+> 

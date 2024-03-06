@@ -1,18 +1,19 @@
 #FC =  ifort -g -traceback -check all -fp-stack-check 
-FC =  ifort #mpiifort
+FC = mpiifort   #ifort #mpiifort
 FCFLAGS = -qopenmp
 NETCDF_F = $(netcdf_fortran_ROOT)
 NETCDF_C = $(netcdf_c_ROOT)
 LIBCDF = -I$(NETCDF_F)/include -L$(NETCDF_F)/lib -I$(NETCDF_C)/include -L$(NETCDF_C)/lib -lnetcdff -lnetcdf
-DATETIME=/home/Mariusz.Pagowski/MAPP_2018/libs/fortran-datetime
+DATETIME=/home/mpagowsk/mapp_2018/libs/fortran-datetime
 LIBDATETIME = -I$(DATETIME)/include -L$(DATETIME)/lib -lfortran_datetime
-SLINT = /home/Mariusz.Pagowski/MAPP_2018/libs/slint
+SLINT = /home/mpagowsk/mapp_2018/libs/slint
 LIBSLINT = -I$(SLINT) -L$(SLINT) -lslint
 LDFLAGS = $(LIBCDF) $(LIBSLINT) $(LIBDATETIME)
 
-SOURCEDIR = /home/Bo.Huang/JEDI-2020/UFS-Aerosols_RETcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl/misc/src_omp
-BUILDDIR = /scratch1/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/JEDI-FV3/expCodes/UFSAerosols-workflow/src_omp/build
-EXECDIR = /scratch1/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/JEDI-FV3/expCodes/UFSAerosols-workflow/src_omp/exec
+#SOURCEDIR = /work/noaa/wrf-chem/bhuang/NRTdata_UFS-Aerosols/src_omp/src_omp
+SOURCEDIR= /home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/src_omp
+BUILDDIR = /work/noaa/wrf-chem/bhuang/NRTdata_UFS-Aerosols/src_omp/build
+EXECDIR =  /work/noaa/wrf-chem/bhuang/NRTdata_UFS-Aerosols/src_omp/exec
 
 RM = /bin/rm -f
 

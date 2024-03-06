@@ -138,7 +138,7 @@ done
 
 echo ${RPLTRCRVARS} > INVARS.nml
 ${NCP} ${RPLEXEC} ./replace_aeroanl_restart.py
-
+#module load python/3.7.5
 srun --export=all -n 1 python replace_aeroanl_restart.py -i 0 -j 0 -v INVARS.nml
 ERR=$?
 

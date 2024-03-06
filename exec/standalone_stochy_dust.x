@@ -1,1 +1,1 @@
-/scratch1/BMC/gsd-fv3-dev/MAPP_2018/pagowski/exec/standalone_stochy_dust.x
+/work/noaa/wrf-chem/bhuang/NRTdata_UFS-Aerosols/src_sppt/standalone_stochy_dust.x

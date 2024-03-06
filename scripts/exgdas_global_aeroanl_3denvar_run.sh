@@ -105,13 +105,17 @@ fi
 ##module load nco ncview ncl
 #module list
 source ${HOMEjedi}/jedi_module_base.hera.sh
+#source /home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/dr-work-mpi/xmlFiles/jedi_module_base.hera.sh
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${HOMEjedi}/lib/"
 export OMP_NUM_THREADS=1
 ulimit -s unlimited
 
 echo $LD_LIBRARY_PATH
 
-srun --export=all -n ${ncore_envar} ./fv3jedi_var.x hyb-3dvar_gfs_aero_${AODTYPE}.yaml hyb-3dvar_gfs_aero_${AODTYPE}.run
+srun --export=all -n ${ncore_envar} ./fv3jedi_var.x hyb-3dvar_gfs_aero_${AODTYPE}.yaml # hyb-3dvar_gfs_aero_${AODTYPE}.run
+#mpiexec --envall  -n ${ncore_envar} ./fv3jedi_var.x hyb-3dvar_gfs_aero_${AODTYPE}.yaml hyb-3dvar_gfs_aero_${AODTYPE}.run
+#/apps/intel-2022.1.2/intel-2022.1.2/mpi/2021.5.1/bin/mpiexec --envall  -n ${ncore_envar} ./fv3jedi_var.x hyb-3dvar_gfs_aero_${AODTYPE}.yaml hyb-3dvar_gfs_aero_${AODTYPE}.run
+
 ERR=$?
 
 if [ ${ERR} -ne 0 ]; then

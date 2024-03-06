@@ -23,7 +23,8 @@ ROTDIR=${ROTDIR:-"/scratch2/BMC/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/A
 PSLOT=${PSLOT:-"Prep_VIIRSAOD_202007"}
 CDATE=${CDATE:-"2020070100"}
 AODSAT=${AODSAT:-"npp"}
-NDATE=${NDATE:-"/scratch2/NCEPDEV/nwprod/NCEPLIBS/utils/prod_util.v1.1.0/exec/ndate"}
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
+
 
 NRM="/bin/rm -rf"
 

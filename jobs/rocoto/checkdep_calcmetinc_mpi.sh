@@ -7,7 +7,7 @@ NMEM_ENKF=${NMEM_ENKF:-"20"}
 CASE_ENKF=${CASE_ENKF:-"C192"}
 CYCINTHR=${CYCINTHR:-"06"}
 ENSRUN=${ENSRUN:-"YES"}
-NDATE=${NDATE:-"/scratch2/NCEPDEV/nwprod/NCEPLIBS/utils/prod_util.v1.1.0/exec/ndate"}
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 
 GDATE=$(${NDATE} -${CYCINTHR} ${CDATE})
 

@@ -13,8 +13,7 @@ set -x
 
 source config_hera2hpss
 
-NDATE="/scratch2/NCEPDEV/nwprod/NCEPLIBS/utils/prod_util.v1.1.0/exec/ndate"
-
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 module load hpss
 #export PATH="/apps/hpss/bin:$PATH"
 set -x

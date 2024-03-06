@@ -30,7 +30,7 @@ CYCINTHR=${CYCINTHR:-"6"}
 DATAROOT=${DATAROOT:-"/scratch2/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/JEDI-FV3/MISC/UFS-Aerosols/TestScripts/grid-aeros/"}
 COMPONENT=${COMPONENT:-"model_data/atmos/restart"}
 
-NDATE="/scratch2/NCEPDEV/nwprod/NCEPLIBS/utils/prod_util.v1.1.0/exec/ndate"
+NDATE="/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"
 AEROLLEXEC=${HOMEgfs}/exec/fv32ll_reanalysis.x
 AEROPLLEXEC=${HOMEgfs}/exec/fv32pll.x
 #AEROLLEXEC=/scratch1/BMC/chem-var/pagowski/exec/fv32ll_reanalysis.x
@@ -42,7 +42,7 @@ source ${HOMEjedi}/jedi_module_base.hera.sh
 #source /home/Mariusz.Pagowski/.jedi
 ERR=$?
 [[ ${ERR} -ne 0 ]] && exit 1
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/scratch1/BMC/gsd-fv3-dev/MAPP_2018/pagowski/libs/fortran-datetime/lib"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/home/mpagowsk/mapp_2018/libs/fortran-datetime/lib"
 
 jobid="diag_fv3_aeros".$$
 DATA1=${DATA:-${DATAROOT}/${jobid}}

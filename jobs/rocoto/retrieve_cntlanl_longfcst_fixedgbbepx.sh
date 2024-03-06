@@ -23,7 +23,7 @@ SFCANL_RST=${SFCANL_RST:-"YES"}
 FHMAX=${FHMAX:-"120"}
 TMPDIR=${ROTDIR}/
 
-NDATE="/scratch2/NCEPDEV/nwprod/NCEPLIBS/utils/prod_util.v1.1.0/exec/ndate"
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 FHMAX=$((${FHMAX}+24))
 
 module load hpss

@@ -13,6 +13,14 @@ set -x
 source "${HOMEgfs}/ush/preamble.sh"
 #. $HOMEgfs/ush/load_fv3gfs_modules.sh
 . $HOMEgfs/ush/load_ufswm_modules.sh
+ulimit -s unlimited
+#UFSMODDIR=/work/noaa/gsd-fv3-dev/bhuang/JEDI-FV3/expCodes/UFSAerosols-workflow/20231116-develop/global-workflow/sorc/ufs_model.fd/tests
+#source ${UFSMODDIR}/detect_machine.sh
+#MACHINE_ID="orion"
+#source ${UFSMODDIR}/module-setup.sh
+#module use ${UFSMODDIR}/../modulefiles
+#module load ufs_orion.intel
+#module list
 status=$?
 [[ $status -ne 0 ]] && exit $status
 
@@ -25,7 +33,7 @@ MEGANDIR_NRT=${MEGANDIR_NRT:-"/scratch1/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-20
 DUSTDIR_NRT=${DUSTDIR_NRT:-"/scratch1/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/JEDI-FV3/NRTdata_UFS-Aerosols/gocart_emissions/Dust/"}
 CDATE=${CDATE:-"2023083006"}
 CYCINTHR=${CYCINTHR:-"6"}
-NDATE=${NDATE:-"/scratch2/NCEPDEV/nwprod/NCEPLIBS/utils/prod_util.v1.1.0/exec/ndate"}
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 AEROEMIS_STOCH_CNTL=${AEROEMIS_STOCH_CNTL:-"YES"}
 AEROEMIS_STOCH_ENKF=${AEROEMIS_STOCH_ENKF:-"YES"}
 NMEM_ENKF=${NMEM_ENKF:-"5"}
@@ -58,7 +66,7 @@ jobid="${job}.$$"
 DATA=${DATA:-${DATAROOT}/${jobid}}
 [[ ! -d ${DATA} ]] && mkdir -p ${DATA}
 
-export LD_LIBRARY_PATH="/home/Mariusz.Pagowski/MAPP_2018/libs/fortran-datetime/lib:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="/home/mpagowsk/mapp_2018/libs/fortran-datetime/lib:${LD_LIBRARY_PATH}"
 
 EMIS_SRCS=${AEROEMIS_SRCS:-"GBBEPx CEDS MEGAN DUSTPARM"}
 OCNSPPT=${AEROEMIS_SPPT:-"1.0"}

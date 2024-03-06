@@ -1,11 +1,13 @@
 #! /usr/bin/env bash
 
 source "${HOMEgfs}/ush/preamble.sh"
+ulimit -s unlimited
 
 ###############################################################
 # Source FV3GFS workflow modules
 #. ${HOMEgfs}/ush/load_fv3gfs_modules.sh
 . ${HOMEgfs}/ush/load_ufswm_modules.sh
+module load python/3.7.5
 status=$?
 [[ ${status} -ne 0 ]] && exit ${status}
 
