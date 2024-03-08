@@ -52,50 +52,12 @@ ICNT=$((${ICNT}+${ERR}))
 
 # Back up gdas cntl
 # Copy gridded reanalysis files
-DIAGDIR=${ROTDIR}/gdas.${CYMD}/${CH}/diag/
-REANLDIR=${ROTDIR}/GriddedReanl/${CY}/${CY}${CM}/${CYMD}
-[[ ! -d ${REANLDIR} ]] && mkdir -p ${REANLDIR}
-
-${NCP} ${DIAGDIR}/aod_grid/fv3_aod_LUTs_fv_tracer*.nc ${REANLDIR}
-ERR=$?
-ICNT=$((${ICNT}+${ERR}))
-${NCP} ${DIAGDIR}/aeros_grid_ll/fv3_aeros_fv_tracer*.nc ${REANLDIR}
-ERR=$?
-ICNT=$((${ICNT}+${ERR}))
-${NCP} ${DIAGDIR}/aeros_grid_pll/fv3_aeros_fv_tracer*.nc ${REANLDIR}
-ERR=$?
-ICNT=$((${ICNT}+${ERR}))
-
-if [ ${AERODA} = "YES" ]; then
-    cd ${REANLDIR}
-    ANLORG=fv3_aod_LUTs_fv_tracer_aeroanl_${CDATE}_ll.nc
-    ANLTGT=NARA-2.0_AOD_${CDATE}.nc
-    ${NMV} ${ANLORG} ${ANLTGT}
-    ${NLN} ${ANLTGT} ${ANLORG}
-    ERR=$?
-    ICNT=$((${ICNT}+${ERR}))
-
-    ANLORG=fv3_aeros_fv_tracer_aeroanl_${CDATE}_ll.nc
-    ANLTGT=NARA-2.0_AEROS_${CDATE}_LL.nc
-    ${NMV} ${ANLORG} ${ANLTGT}
-    ${NLN} ${ANLTGT} ${ANLORG}
-    ERR=$?
-    ICNT=$((${ICNT}+${ERR}))
-
-    ANLORG=fv3_aeros_fv_tracer_aeroanl_${CDATE}_pll.nc
-    ANLTGT=NARA-2.0_AEROS_${CDATE}_PLL.nc
-    ${NMV} ${ANLORG} ${ANLTGT}
-    ${NLN} ${ANLTGT} ${ANLORG}
-    ERR=$?
-    ICNT=$((${ICNT}+${ERR}))
-fi
 
 CNTLDIR=${ROTDIR}/gdas.${CYMD}/${CH}
-CNTLDIR_ATMOS=${CNTLDIR}/model_data
-
 cd ${CNTLDIR}
-TARFILE=${DATAHPSSDIR}/gdas.${CDATE}.diag.tar
-htar -P -cvf ${TARFILE} *
+TARFILE=${DATAHPSSDIR}/gdas.${CDATE}.dr-data-backup.tar
+#htar -P -cvf ${TARFILE} *
+tar -cvf ${TARFILE} *
 ERR=$?
 ICNT=$((${ICNT}+${ERR}))
 
@@ -103,8 +65,9 @@ ENKFDIR=${ROTDIR}/enkfgdas.${CYMD}/${CH}
 
 if [ ${AERODA} = "YES" ]; then
     cd ${ENKFDIR}
-    TARFILE=${DATAHPSSDIR}/enkfgdas.${CDATE}.diag.tar
-    htar -P -cvf ${TARFILE} *
+    TARFILE=${DATAHPSSDIR}/enkfgdas.${CDATE}.dr-data-backup.tar
+    #htar -P -cvf ${TARFILE} *
+    tar -cvf ${TARFILE} *
     ERR=$?
     ICNT=$((${ICNT}+${ERR}))
 fi
@@ -114,14 +77,7 @@ if [ ${ICNT} -ne 0 ]; then
     exit ${ICNT}
 else
     echo "HTAR diag at ${CDATE} passed and exit now".
-    echo "${CNTLDIR_ATMOS}"
-    echo "$(ls ${DIAGDIR}/aod_grid/fv3_aod_LUTs_fv_tracer*.nc)"
-    echo "$(ls ${DIAGDIR}/aeros_grid_ll/fv3_aeros_fv_tracer*.nc)"
-    echo "$(ls ${DIAGDIR}/aeros_grid_pll/fv3_aeros_fv_tracer*.nc)"
-    ${NRM} ${CNTLDIR_ATMOS}
-    ${NRM} ${DIAGDIR}/aod_grid/fv3_aod_LUTs_fv_tracer*.nc
-    ${NRM} ${DIAGDIR}/aeros_grid_ll/fv3_aeros_fv_tracer*.nc
-    ${NRM} ${DIAGDIR}/aeros_grid_pll/fv3_aeros_fv_tracer*.nc
-
+    cd ${TMPDIR}
+/opt/slurm/bin/sbatch sbatch_glbus2niag_diag.sh
 fi
 exit ${ICNT}

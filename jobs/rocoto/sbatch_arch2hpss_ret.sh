@@ -2,7 +2,7 @@
 #SBATCH -J hera2hpss
 #SBATCH -A chem-var
 #SBATCH -n 1
-#SBATCH -t 24:00:00
+#SBATCH -t 07:59:00
 #SBATCH -p service
 #SBATCH -D ./
 #SBATCH -o ./hera2hpss.out
@@ -47,7 +47,8 @@ GH=${GDATE:8:2}
 GYMD=${GDATE:0:8}
 
 DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data/${GY}/${GY}${GM}/${GYMD}/
-hsi "mkdir -p ${DATAHPSSDIR}"
+#hsi "mkdir -p ${DATAHPSSDIR}"
+mkdir -p ${DATAHPSSDIR}
 ERR=$?
 if [ ${ERR} -ne 0 ]; then
     echo "*hsi mkdir* failed at ${GDATE}" >> ${HPSSRECORD}
@@ -92,7 +93,8 @@ if [ -s ${CNTLDIR_ATMOS} ]; then
 
     cd ${CNTLDIR}
     TARFILE=${DATAHPSSDIR}/gdas.${GDATE}.tar
-    htar -P -cvf ${TARFILE} *
+    #htar -P -cvf ${TARFILE} *
+    tar -cvf ${TARFILE} *
     ERR=$?
     if [ ${ERR} -ne 0 ]; then
         echo "HTAR cntl data failed at ${CDATE}" >> ${HPSSRECORD}
@@ -158,7 +160,8 @@ if [ ${ENSRUN} = "YES" ]; then
     TARFILE=${DATAHPSSDIR}/enkfgdas.${GDATE}.ensmean.tar
     LGRP=${TMPDIR}/list.grp${IGRP}
     cd ${ENKFDIR}
-    htar -P -cvf ${TARFILE}  $(cat ${LGRP})
+    #htar -P -cvf ${TARFILE}  $(cat ${LGRP})
+    tar -cvf ${TARFILE}  $(cat ${LGRP})
     ERR=$?
     if [ ${ERR} -ne 0 ]; then
         echo "HTAR enkf data failed at ${GDATE} and grp${IGRP}" >> ${HPSSRECORD}
@@ -180,7 +183,8 @@ if [ ${ENSRUN} = "YES" ]; then
         TARFILE=${DATAHPSSDIR}/enkfgdas.${GDATE}.grp${IGRP}.tar
         LGRP=${TMPDIR}/list.grp${IGRP}
         cd ${ENKFDIR}
-        htar -P -cvf ${TARFILE}  $(cat ${LGRP})
+        #htar -P -cvf ${TARFILE}  $(cat ${LGRP})
+        tar -P -cvf ${TARFILE}  $(cat ${LGRP})
         ERR=$?
         if [ ${ERR} -ne 0 ]; then
             echo "HTAR enkf data* failed at ${GDATE} and grp${IGRP}" >> ${HPSSRECORD}
@@ -194,7 +198,8 @@ if [ ${ENSRUN} = "YES" ]; then
     ${NCP} ${CNTLDIR_DIAG}/* ${CPCNTLDIAG}/
     cd ${ENKFDIR_DIAG}
     TARFILE=${DATAHPSSDIR}/diag.cntlenkf.${GDATE}.tar
-    htar -P -cvf ${TARFILE} *
+    #tar -P -cvf ${TARFILE} *
+    tar -P -cvf ${TARFILE} *
     ERR=$?
     if [ ${ERR} -ne 0 ]; then
         echo "HTAR enkf diag data failed at ${GDATE}" >> ${HPSSRECORD}
@@ -203,14 +208,15 @@ if [ ${ENSRUN} = "YES" ]; then
 
 fi #ENSRUN
 
-
 if [ ${ERR} -eq 0 ]; then
     echo "HTAR is successful at ${GDATE}"
-    ${NRM} ${CNTLDIR}
-    if [ ${AERODA} = "YES" -o ${ENSRUN} = "YES" ]; then
-        ${NRM} ${ENKFDIR}
-    fi
-     echo "YES" > ${TMPDIR}/remove.record
+    #${NRM} ${CNTLDIR}
+    #if [ ${AERODA} = "YES" -o ${ENSRUN} = "YES" ]; then
+    #    ${NRM} ${ENKFDIR}
+    #fi
+    # echo "YES" > ${TMPDIR}/remove.record
+    cd ${TMPDIR}
+/opt/slurm/bin/sbatch sbatch_glbus2niag_ret.sh
 else
     echo "HTAR failed at ${GDATE}" >> ${HPSSRECORD}
     exit ${ERR}

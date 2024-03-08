@@ -87,7 +87,8 @@ ERR=$?
 [[ ${ERR} -ne 0 ]] && exit ${ERR}
 TARDIR=${CHGRESHPSSDIR}/GDAS_CHGRES_NC_${CASE_CNTL}/${CY}/${CY}${CM}/${CY}${CM}${CD}
 TARFILE=gdas.${CDATE}.${CASE_CNTL}.NC.tar
-htar -xvf ${TARDIR}/${TARFILE} 
+#htar -xvf ${TARDIR}/${TARFILE} 
+tar -xvf ${TARDIR}/${TARFILE} 
 ERR=$?
 [[ ${ERR} -ne 0 ]] && exit ${ERR}
 TGTDIR=${ROTCNTLOUT}/${COMP_ANL_ATM}
@@ -111,7 +112,8 @@ if [ ${AERODA} = 'YES' -o ${ENSRUN} = 'YES' ]; then
     TARFILE=${TARDIR}/enkfgdas.${CDATE}.${CASE_ENKF}.NC.${NMEMSGRPS}.tar
 
     rm -rf list1.gdasenkf list2.gdasenkf list3.gdasenkf
-    htar -tvf ${TARFILE} > list1.gdasenkf
+    #htar -tvf ${TARFILE} > list1.gdasenkf
+    tar -tvf ${TARFILE} > list1.gdasenkf
     IMEM=1
     while [ ${IMEM} -le ${NMEM_ENKF} ]; do
         MEMSTR="mem"$(printf %03d ${IMEM})
@@ -124,7 +126,8 @@ if [ ${AERODA} = 'YES' -o ${ENSRUN} = 'YES' ]; then
         echo ${line##*' '} >> ./list3.gdasenkf
     done < "./list2.gdasenkf"
 
-    htar -xvf ${TARFILE} -L ./list3.gdasenkf
+    #htar -xvf ${TARFILE} -L ./list3.gdasenkf
+    tar -xvf ${TARFILE} < ./list3.gdasenkf
 
     ERR=$?
     [[ ${ERR} -ne 0 ]] && exit ${ERR}

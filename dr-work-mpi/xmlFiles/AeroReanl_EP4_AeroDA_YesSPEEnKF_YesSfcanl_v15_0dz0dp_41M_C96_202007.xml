@@ -35,7 +35,7 @@
 
 	<!-- Experiment parameter setup -->
 	<!ENTITY SDATE "202007130600">
-	<!ENTITY EDATE "202007131200">
+	<!ENTITY EDATE "202007130600">
 	<!ENTITY INTERVAL "06:00:00">
 	<!ENTITY CYCINTHR "06">
 	<!ENTITY CDUMP_CNTL "gdas">
@@ -60,7 +60,8 @@
 	<!ENTITY CASE_CNTL     "C96">
 	<!ENTITY CASE_ENKF     "C96">
 	<!ENTITY NMEMSGRPS "01-40">
-	<!ENTITY CHGRESHPSSDIR "/BMC/fim/5year/MAPP_2018/bhuang/BackupGdas/chgres-&GFSVERSION;/">
+	<!--ENTITY CHGRESHPSSDIR "/BMC/fim/5year/MAPP_2018/bhuang/BackupGdas/chgres-&GFSVERSION;/"-->
+	<!ENTITY CHGRESHPSSDIR "/work/noaa/rstprod/bohuang/DataTransfer/FromNiag/AeroReanl/ChgresGDAS/chgres-&GFSVERSION;/">
 	<!ENTITY METRETDIR "&ROTDIR;/RetrieveGDAS/">
 	<!ENTITY METRECORD "/home/Bo.Huang/JEDI-2020/UFS-Aerosols_NRTcyc/UFS-Aerosols_JEDI-AeroDA-1C192-20C192_NRT/misc/GDAS/CHGRESGDAS/&GFSVERSION;/record.chgres_hpss_htar_success_&GFSVERSION;">
 	<!ENTITY MISSGDASRECORD "/home/Bo.Huang/JEDI-2020/UFS-Aerosols_NRTcyc/UFS-Aerosols_JEDI-AeroDA-1C192-20C192_NRT/misc/GDAS/CHGRESGDAS/&GFSVERSION;/record.chgres_hpss_htar_allmissing_&GFSVERSION;">
@@ -103,7 +104,9 @@
 	<!ENTITY DUSTDIR_NRT "&EMISDIR_NRT;/nexus/FENGSHA-HBO/">
 
 	<!-- Archive directory setup -->
-	<!ENTITY ARCHHPSSDIR "/BMC/fim/5year/MAPP_2018/bhuang/UFS-Aerosols-expRuns/UFS-Aerosols_RETcyc/AeroReanl/">
+	<!--ENTITY ARCHHPSSDIR "/BMC/fim/5year/MAPP_2018/bhuang/UFS-Aerosols-expRuns/UFS-Aerosols_RETcyc/AeroReanl/"-->
+	<!ENTITY ARCHHPSSDIR "/work/noaa/rstprod/bohuang/expRuns/AeroReanl/">
+	<!ENTITY ARCHNIAGDIR "/collab1/data/Bo.Huang/FromOrion/expRuns/AeroReanl/">
 	<!ENTITY ARCHRETHR "12">
 	<!ENTITY NMEM_ENSGRP_ARCH "10">
 
@@ -746,6 +749,7 @@
 	<envar><name>HOMEgfs</name><value>&HOMEgfs;</value></envar>
 	<envar><name>EXPDIR</name><value>&EXPDIR;</value></envar>
 	<envar><name>ARCHHPSSDIR</name><value>&ARCHHPSSDIR;</value></envar>
+	<envar><name>ARCHNIAGDIR</name><value>&ARCHNIAGDIR;</value></envar>
 	<envar><name>ARCHRETHR</name><value>&ARCHRETHR;</value></envar>
 	<envar><name>NMEM_ENSGRP_ARCH</name><value>&NMEM_ENSGRP_ARCH;</value></envar>
 	<envar><name>COMROOT</name><value>&COMROOT;</value></envar>

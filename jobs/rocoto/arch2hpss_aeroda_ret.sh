@@ -22,6 +22,8 @@ OBSDIR_NRT=${OBSDIR_NRT:-"/scratch1/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/J
 CASE_OBS=${CASE_OBS:-"C192"}
 
 ARCHHPSSDIR=${ARCHHPSSDIR:-"/BMC/fim/5year/MAPP_2018/bhuang/UFS-Aerosols-expRuns/UFS-Aerosols_NRTcyc/"}
+ARCHNIAGDIR=${ARCHNIAGDIR:-"/collab1/data/Bo.Huang/FromOrion/expRuns/AeroReanl/"}
+
 ARCHRETHR=${ARCHRETHR-"12"}
 NMEM_ENSGRP_ARCH=${NMEM_ENSGRP_ARCH:-"10"}
 
@@ -30,6 +32,7 @@ TMPDIR=${ROTDIR}/HERA2HPSS/${CDATE}
 
 cd ${TMPDIR}
 cp ${HOMEgfs}/jobs/rocoto/sbatch_arch2hpss_ret.sh ./
+cp ${HOMEgfs}/jobs/rocoto/sbatch_glbus2niag_ret.sh ./
 
 cat << EOF > config_hera2hpss
 HOMEgfs=${HOMEgfs}
@@ -54,14 +57,19 @@ AODTYPE=${AODTYPE}
 CASE_OBS=${CASE_OBS}
 
 ARCHHPSSDIR=${ARCHHPSSDIR}
+ARCHNIAGDIR=${ARCHNIAGDIR}
 ARCHRETHR=${ARCHRETHR}
 NMEM_ENSGRP_ARCH=${NMEM_ENSGRP_ARCH}
 HPSSRECORD=${TMPDIR}/../record.failed_HERA2HPSS-${CDATE}
 
 TMPDIR=${TMPDIR}
+
+NIAGEP=1bfd8a79-52b2-4589-88b2-0648e0c0b35d
+ORIONEP=2cf2c281-cafc-4b20-900b-45abeb042854
+GLBUSRECORD=${TMPDIR}/../record.failed_GLBUS2NIAG-${CDATE}
 EOF
 
-/apps/slurm/default/bin/sbatch sbatch_arch2hpss_ret.sh
+/opt/slurm/bin/sbatch sbatch_arch2hpss_ret.sh
 ERR=$?
 echo ${CDATE} > ${TASKRC}
 sleep 60
