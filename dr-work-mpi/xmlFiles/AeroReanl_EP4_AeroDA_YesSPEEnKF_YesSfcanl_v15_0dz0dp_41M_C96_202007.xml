@@ -34,8 +34,8 @@
 	<!ENTITY DMPDIR   "/work/noaa/rstprod/bohuang/dump">
 
 	<!-- Experiment parameter setup -->
-	<!ENTITY SDATE "202007130600">
-	<!ENTITY EDATE "202007130600">
+	<!ENTITY SDATE "202007230600">
+	<!ENTITY EDATE "202007231800">
 	<!ENTITY INTERVAL "06:00:00">
 	<!ENTITY CYCINTHR "06">
 	<!ENTITY CDUMP_CNTL "gdas">
@@ -115,7 +115,7 @@
 	<!--ENTITY PARTITION_BIGMEM    "bigmem"-->
 	<!ENTITY PARTITION_BIGMEM    "orion">
 	<!ENTITY ACCOUNT    "gsd-fv3-dev">
-	<!ENTITY QUEUE      "debug">
+	<!ENTITY QUEUE      "batch">
 	<!ENTITY QUEUE_DEB      "debug">
 	<!ENTITY SCHEDULER  "slurm">
 
@@ -227,10 +227,11 @@
 				<taskdep task="gdasarch" cycle_offset="-06:00:00"/>
 				<not><cycleexistdep cycle_offset="-06:00:00"/></not>
 			</or>
-			<or>
+			<sh shell="/bin/bash"><cyclestr>&JOBS_DIR;/checkdep_gdas.sh</cyclestr></sh>
+			<!-->
 				<sh shell="/bin/bash"><cyclestr>grep @Y@m@d@H &METRECORD;</cyclestr></sh>
 				<sh shell="/bin/bash"><cyclestr>grep @Y@m@d@H &MISSGDASRECORD;</cyclestr></sh>
-			</or>
+			<-->
 		</and>
 	</dependency>
 
@@ -243,7 +244,7 @@
 
 	<jobname><cyclestr>&PSLOT;_gdascalcinc_@H</cyclestr></jobname>
 
-	<queue>&QUEUE_DEB;</queue>
+	<queue>&QUEUE;</queue>
 	<partition>&PARTITION;</partition>
 	<account>&ACCOUNT;</account>
 	<walltime>&WALLTIME_SIGP_GDAS;</walltime>
@@ -294,7 +295,7 @@
 
 	<jobname><cyclestr>&PSLOT;_gdassfcrpl_@H</cyclestr></jobname>
 
-	<queue>&QUEUE_DEB;</queue>
+	<queue>&QUEUE;</queue>
 	<partition>&PARTITION;</partition>
 	<account>&ACCOUNT;</account>
 	<walltime>&WALLTIME_SIGP_GDAS;</walltime>
@@ -340,7 +341,7 @@
 
 	<jobname><cyclestr>&PSLOT;_pertemis_@H</cyclestr></jobname>
 	<account>&ACCOUNT;</account>
-	<queue>&QUEUE_DEB;</queue>
+	<queue>&QUEUE;</queue>
 	<partition>&PARTITION;</partition>
 	<walltime>&WALLTIME_SIGP_GDAS;</walltime>
 	<nodes>&RESOURCES_SIGP_GDAS;</nodes>
@@ -698,7 +699,7 @@
 
 	<jobname><cyclestr>&PSLOT;_gdasemean_@H</cyclestr></jobname>
 	<account>&ACCOUNT;</account>
-	<queue>&QUEUE_DEB;</queue>
+	<queue>&QUEUE;</queue>
 	<partition>&PARTITION;</partition>
 	<walltime>&WALLTIME_EMEAN_GDAS;</walltime>
 	<nodes>&RESOURCES_EMEAN_GDAS;</nodes>
