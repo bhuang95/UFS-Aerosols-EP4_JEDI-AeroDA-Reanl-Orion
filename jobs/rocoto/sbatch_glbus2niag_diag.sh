@@ -2,11 +2,11 @@
 #SBATCH -J hera2hpss
 #SBATCH -A chem-var
 #SBATCH -n 1
-#SBATCH -t 24:00:00
+#SBATCH -t 8:00:00
 #SBATCH -p service
 #SBATCH -D ./
-#SBATCH -o ./hera2hpss.out
-#SBATCH -e ./hera2hpss.out
+#SBATCH -o ./globus2niag.out
+#SBATCH -e ./globus2niag.out
 
 set -x
 # Back up cycled data to HPSS at ${CDATE}-6 cycle
@@ -37,7 +37,7 @@ CYMD=${CDATE:0:8}
 
 ICNT=0
 DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data-backup/${CY}/${CY}${CM}/${CYMD}/
-NIAGHPSSDIR=${ARCHNIAGDIR}/${PSLOT}/dr-data-backup/${CY}/${CY}${CM}/${CYMD}/
+DATANIAGDIR=${ARCHNIAGDIR}/${PSLOT}/dr-data-backup/${CY}/${CY}${CM}/${CYMD}/
 
 ICNT=0
 GLBUSREC=Globus_o2n_${CDATE}.record
@@ -48,14 +48,14 @@ ICNT=$((${ICNT}+${ERR}))
 
 cd ${TMPDIR}
 GINPUT=GlobusInput.out
-GID=GlobusID_${GYMD}.out
-GID2=GlobusID_${GYMD}_YES.out
+GID=GlobusID_${CYMD}.out
+GID2=GlobusID_${CYMD}_YES.out
 [[ ! -f ${GINPUT} ]] && ${NRM} ${GINPUT}
 for TARFILE in ${TARFILES};do
     echo "${TARFILE}    ${TARFILE}" >> ${GINPUT}
 done
 
-globus transfer --notify failed,inactive ${ORIONEP}:${DATAHPSSDIR} ${NIAGNEP}:${DATANIAGDIR}  --batch ${GINPUT} >& ${GID}
+globus transfer --notify failed,inactive ${ORIONEP}:${DATAHPSSDIR} ${NIAGEP}:${DATANIAGDIR}  --batch ${GINPUT} >& ${GID}
 
 ERR=$?
 ICNT=$((${ICNT}+${ERR}))
@@ -68,7 +68,7 @@ ICNT=$((${ICNT}+${ERR}))
 if [ ${ICNT} -eq 0 ]; then
     echo "TAR and GLOBUS is successful at ${CDATE}"
     echo "YES" > ${DATAHPSSDIR}/${GLBUSREC}
-    globus transfer --notify failed,inactive ${ORIONEP}:${DATAHPSSDIR}/${GLBUSREC} ${NIAGNEP}:${DATANIAGDIR}/${GLBUSREC} >& ${GID2}
+    globus transfer --notify failed,inactive ${ORIONEP}:${DATAHPSSDIR}/${GLBUSREC} ${NIAGEP}:${DATANIAGDIR}/${GLBUSREC} >& ${GID2}
 
     ERR=$?
     ICNT=$((${ICNT}+${ERR}))
@@ -82,7 +82,7 @@ if [ ${ICNT} -eq 0 ]; then
         ${NRM} ${ENKFDIR}
     fi
     echo "YES" > ${TMPDIR}/remove.record
-    ${NRM} ${DATAHPSSDIR}
+    ${NRM} ${DATAHPSSDIR}/*${CDATE}*.tar
 
 else
     echo "Globus failed at ${CDATE}" >> ${GLBUSRECORD}

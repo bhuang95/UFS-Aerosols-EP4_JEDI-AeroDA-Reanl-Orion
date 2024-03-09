@@ -210,6 +210,9 @@ PROGRAM  standalone_stochy_dust
   IF (iret .NE. 0) PRINT *, 'ERROR init_stochastic_physics call'
 
   ALLOCATE(sppt_wts(nx,ny))
+  ALLOCATE(skeb_wts(nx,ny))
+  ALLOCATE(t_rp1(nx,ny))
+  ALLOCATE(t_rp2(nx,ny))
 
   ALLOCATE(vardata(nxx,nyy),workg(nxx,nyy),varfraction(nxx,nyy))
 

@@ -31,6 +31,11 @@ export MEANEXEC=${HOMEgfs}/ush/python/calc_ensmean_restart.py
 export MEANTRCRVARS=${MEANTRCRVARS:-""}
 export MEANCOREVARS=${MEANCOREVARS:-""}
 
+export SLURM_EXACT=1
+export SLURM_MEM_PER_NODE=0
+unset SLURM_MEM_PER_CPU 
+unset SLURM_MEM_PER_GPU
+
 NCP="/bin/cp -r"
 NMV="/bin/mv -f"
 NLN="/bin/ln -sf"
@@ -91,6 +96,7 @@ while [ ${ITILE} -le 6 ]; do
         done
 
         { srun --export=all -n 1 python calc_ensmean_restart.py -f ${TGTFILE} -n ${NMEM} -v "INVARS.nml" >& ${MRSTLOG}; echo "$?" > extcode.out; } &
+        #{ srun --export=all --exact -n 1 -c 1 --mem-per-cpu=1000M python calc_ensmean_restart.py -f ${TGTFILE} -n ${NMEM} -v "INVARS.nml" >& ${MRSTLOG}; echo "$?" > extcode.out; } &
     done
     ITILE=$((ITILE+1))
 done

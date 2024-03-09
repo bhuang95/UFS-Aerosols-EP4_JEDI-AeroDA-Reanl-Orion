@@ -2,7 +2,7 @@
 #SBATCH -J hera2hpss
 #SBATCH -A chem-var
 #SBATCH -n 1
-#SBATCH -t 24:00:00
+#SBATCH -t 08:00:00
 #SBATCH -p service
 #SBATCH -D ./
 #SBATCH -o ./hera2hpss.out
@@ -14,7 +14,7 @@ set -x
 source config_hera2hpss
 
 NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
-module load hpss
+#module load hpss
 #export PATH="/apps/hpss/bin:$PATH"
 set -x
 
@@ -46,7 +46,7 @@ GYMD=${GDATE:0:8}
 
 ICNT=0
 DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data-backup/${CY}/${CY}${CM}/${CYMD}/
-hsi "mkdir -p ${DATAHPSSDIR}"
+mkdir -p ${DATAHPSSDIR}
 ERR=$?
 ICNT=$((${ICNT}+${ERR}))
 

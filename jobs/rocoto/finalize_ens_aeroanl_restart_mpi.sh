@@ -30,6 +30,11 @@ export NMEM_ENKF=${NMEM_ENKF:-"20"}
 export RECENTEREXEC="${HOMEgfs}/ush/python/recenter_enkf_aeroanl_restart.py"
 export RPLTRCRVARS=${RPLTRCRVARS:-""}
 
+export SLURM_EXACT=1
+export SLURM_MEM_PER_NODE=0
+unset SLURM_MEM_PER_CPU 
+unset SLURM_MEM_PER_GPU
+
 if [ ${RECENTER_ENKF_AERO} = "YES" ]; then
     RECENTEREXEC="${HOMEgfs}/ush/python/recenter_enkf_aeroanl_restart.py"
 else

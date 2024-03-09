@@ -89,7 +89,7 @@ if [ ${ICNT} -eq 0 ]; then
     fi
     echo "YES" > ${TMPDIR}/remove.record
 
-    ${NRM} ${DATAHPSSDIR}
+    ${NRM} ${DATAHPSSDIR}/*${CDATE}*.tar
 else
     echo "Globus failed at ${GDATE}" >> ${GLBUSRECORD}
     exit ${ICNT}

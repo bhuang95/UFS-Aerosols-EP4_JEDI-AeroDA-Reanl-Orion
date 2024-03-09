@@ -11,7 +11,7 @@
 set -x
 # Back up cycled data to HPSS at ${CDATE}-6 cycle
 
-source config_hera2hpss
+#source config_hera2hpss
 
 NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 

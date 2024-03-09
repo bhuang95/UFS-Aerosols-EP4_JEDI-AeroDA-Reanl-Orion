@@ -45,6 +45,9 @@ if [ ${AEROEMIS_STOCH_CNTL} = "NO" ] && [ ${AEROEMIS_STOCH_ENKF} = "NO" ]; then
     exit 0
 fi
 
+export SLURM_EXACT=1
+export SLURM_MEM_PER_NODE=0
+
 ENSST=1
 ENSED=${NMEM_ENKF}
 
@@ -320,7 +323,7 @@ EOF
         echo "Perturbing ${EMIS_SRC}"
         ${NCP} input.nml ${CONF_CDATE}/ufs.${EMIS_SRC}_emis.input.nml
 	[[ -e extcode.${EMIS_SRC} ]] && ${NRM} extcode.${EMIS_SRC}
-	{ srun --export=all -n 1 ./standalone_stochy_${EMIS_SRC}.x >& ${PERTLOG}; echo "$?" > extcode.${EMIS_SRC}; } &
+	{ srun --export=all -n 1  ./standalone_stochy_${EMIS_SRC}.x >& ${PERTLOG}; echo "$?" > extcode.${EMIS_SRC}; } &
         IMEM=$((IMEM+1))
     done
     wait

@@ -74,6 +74,11 @@ if ( grep ${CDATE} ${MISSGDASRECORD} ); then
     exit 0
 fi
 
+export SLURM_EXACT=1
+export SLURM_MEM_PER_NODE=0
+unset SLURM_MEM_PER_CPU 
+unset SLURM_MEM_PER_GPU
+
 mkdir -p $DATA
 
 ENSST=0

@@ -79,6 +79,9 @@ if [ ${SFCANL_RST} = "NO" ]; then
     exit 0
 fi
 
+export SLURM_EXACT=1
+export SLURM_MEM_PER_NODE=0
+
 mkdir -p $DATA
 
 NTHREADS_RPLSFC=${NTHREADS_RPLSFC:-"1"}
