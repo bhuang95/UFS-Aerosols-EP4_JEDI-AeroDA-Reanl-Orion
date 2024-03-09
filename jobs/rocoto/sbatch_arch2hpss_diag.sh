@@ -45,7 +45,7 @@ GH=${GDATE:8:2}
 GYMD=${GDATE:0:8}
 
 ICNT=0
-DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data-backup/${CY}/${CY}${CM}/${CYMD}/
+DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data-backup/${CDATE}
 mkdir -p ${DATAHPSSDIR}
 ERR=$?
 ICNT=$((${ICNT}+${ERR}))
@@ -55,7 +55,7 @@ ICNT=$((${ICNT}+${ERR}))
 
 CNTLDIR=${ROTDIR}/gdas.${CYMD}/${CH}
 cd ${CNTLDIR}
-TARFILE=${DATAHPSSDIR}/gdas.${CDATE}.dr-data-backup.tar
+TARFILE=${DATAHPSSDIR}/gdas.${CDATE}.diag.tar
 #htar -P -cvf ${TARFILE} *
 tar -cvf ${TARFILE} *
 ERR=$?
@@ -65,7 +65,7 @@ ENKFDIR=${ROTDIR}/enkfgdas.${CYMD}/${CH}
 
 if [ ${AERODA} = "YES" ]; then
     cd ${ENKFDIR}
-    TARFILE=${DATAHPSSDIR}/enkfgdas.${CDATE}.dr-data-backup.tar
+    TARFILE=${DATAHPSSDIR}/enkfgdas.${CDATE}.diag.tar
     #htar -P -cvf ${TARFILE} *
     tar -cvf ${TARFILE} *
     ERR=$?

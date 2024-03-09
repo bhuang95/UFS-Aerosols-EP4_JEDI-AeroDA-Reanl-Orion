@@ -44,8 +44,8 @@ GYMD=${GDATE:0:8}
 
 CNTLDIR=${ROTDIR}/gdas.${GYMD}/${GH}
 ENKFDIR=${ROTDIR}/enkfgdas.${GYMD}/${GH}
-DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data/${GY}/${GY}${GM}/${GYMD}/
-DATANIAGDIR=${ARCHNIAGDIR}/${PSLOT}/dr-data/${GY}/${GY}${GM}/${GYMD}/
+DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data/${GDATE}
+DATANIAGDIR=${ARCHNIAGDIR}/${PSLOT}/dr-data/${GDATE}
 
 ICNT=0
 GLBUSREC=Globus_o2n_${GDATE}.record
@@ -58,7 +58,7 @@ cd ${TMPDIR}
 GINPUT=GlobusInput.out
 GID=GlobusID_${GYMD}.out
 GID2=GlobusID_${GYMD}_YES.out
-[[  -f ${GINPUT} ]] && ${NRM} ${GINPUT}
+[[ -f ${GINPUT} ]] && ${NRM} ${GINPUT}
 for TARFILE in ${TARFILES};do
     echo "${TARFILE}    ${TARFILE}" >> ${GINPUT}
 done
@@ -89,7 +89,7 @@ if [ ${ICNT} -eq 0 ]; then
     fi
     echo "YES" > ${TMPDIR}/remove.record
 
-    ${NRM} ${DATAHPSSDIR}/*${CDATE}*.tar
+    ${NRM} ${DATAHPSSDIR}
 else
     echo "Globus failed at ${GDATE}" >> ${GLBUSRECORD}
     exit ${ICNT}

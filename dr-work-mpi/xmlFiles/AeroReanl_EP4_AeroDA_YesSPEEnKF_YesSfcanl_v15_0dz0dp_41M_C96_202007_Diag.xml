@@ -34,7 +34,7 @@
 
 	<!-- Experiment parameter setup -->
 	<!ENTITY SDATE "202007230600">
-	<!ENTITY EDATE "202007231800">
+	<!ENTITY EDATE "202007240600">
 	<!ENTITY INTERVAL "06:00:00">
 	<!ENTITY CYCINTHR "06">
 	<!ENTITY CDUMP_CNTL "gdas">
@@ -259,6 +259,7 @@
 	<envar><name>CDATE</name><value><cyclestr>@Y@m@d@H</cyclestr></value></envar>
 	<envar><name>CASE</name><value>&CASE;</value></envar>
 	<envar><name>AERODA</name><value>&AERODA;</value></envar>
+	<envar><name>ENSRUN</name><value>&ENSRUN;</value></envar>
 	<envar><name>PSLOT</name><value>&PSLOT;</value></envar>
 	<envar><name>ROTDIR</name><value>&ROTDIR;</value></envar>
 	<envar><name>HOMEgfs</name><value>&HOMEgfs;</value></envar>

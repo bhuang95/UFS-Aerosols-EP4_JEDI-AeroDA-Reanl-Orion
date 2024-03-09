@@ -36,8 +36,8 @@ CH=${CDATE:8:2}
 CYMD=${CDATE:0:8}
 
 ICNT=0
-DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data-backup/${CY}/${CY}${CM}/${CYMD}/
-DATANIAGDIR=${ARCHNIAGDIR}/${PSLOT}/dr-data-backup/${CY}/${CY}${CM}/${CYMD}/
+DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data-backup/${CDATE}
+DATANIAGDIR=${ARCHNIAGDIR}/${PSLOT}/dr-data-backup/${CDATE}
 
 ICNT=0
 GLBUSREC=Globus_o2n_${CDATE}.record
@@ -50,7 +50,7 @@ cd ${TMPDIR}
 GINPUT=GlobusInput.out
 GID=GlobusID_${CYMD}.out
 GID2=GlobusID_${CYMD}_YES.out
-[[ ! -f ${GINPUT} ]] && ${NRM} ${GINPUT}
+[[ -f ${GINPUT} ]] && ${NRM} ${GINPUT}
 for TARFILE in ${TARFILES};do
     echo "${TARFILE}    ${TARFILE}" >> ${GINPUT}
 done
@@ -82,7 +82,7 @@ if [ ${ICNT} -eq 0 ]; then
         ${NRM} ${ENKFDIR}
     fi
     echo "YES" > ${TMPDIR}/remove.record
-    ${NRM} ${DATAHPSSDIR}/*${CDATE}*.tar
+    ${NRM} ${DATAHPSSDIR}
 
 else
     echo "Globus failed at ${CDATE}" >> ${GLBUSRECORD}

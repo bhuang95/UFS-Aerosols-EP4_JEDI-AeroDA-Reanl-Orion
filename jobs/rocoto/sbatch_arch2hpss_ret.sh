@@ -11,7 +11,7 @@
 set -x
 # Back up cycled data to HPSS at ${CDATE}-6 cycle
 
-#source config_hera2hpss
+source config_hera2hpss
 
 NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 
@@ -46,7 +46,9 @@ GD=${GDATE:6:2}
 GH=${GDATE:8:2}
 GYMD=${GDATE:0:8}
 
-DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data/${GY}/${GY}${GM}/${GYMD}/
+#DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data/${GY}/${GY}${GM}/${GYMD}/
+DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data/${GDATE}
+
 #hsi "mkdir -p ${DATAHPSSDIR}"
 mkdir -p ${DATAHPSSDIR}
 ERR=$?
