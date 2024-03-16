@@ -39,6 +39,7 @@ unset SLURM_MEM_PER_GPU
 NCP="/bin/cp -r"
 NMV="/bin/mv -f"
 NLN="/bin/ln -sf"
+NRM="/bin/rm -rf"
 
 FDATE=$(date +%Y%m%d%H -d "${CDATE:0:8} ${CDATE:8:2} + ${assim_freq} hours")
 
@@ -110,6 +111,7 @@ while [ ${ITILE} -le 6 ]; do
         cd ${TGTDIR}
         ERR=$(cat extcode.out)
         [[ ${ERR} -ne 0 ]] && exit ${ERR}
+	[[ -f ${FENSMEANRTDIR}/${TGTFILE} ]] && ${NRM} ${FENSMEANRTDIR}/${TGTFILE}
         ${NMV} ensmean.${TGTFILE} ${FENSMEANRTDIR}/${TGTFILE}
     done
     ITILE=$((ITILE+1))

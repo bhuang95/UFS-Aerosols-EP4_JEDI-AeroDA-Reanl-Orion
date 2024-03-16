@@ -576,7 +576,8 @@ FV3_out() {
       for file in "${idate:0:8}.${idate:8:2}0000."*; do
         #HBO~
 	#${NCP} "${file}" "${COM_ATMOS_RESTART}/${file}"
-        mv "${file}" "${COM_ATMOS_RESTART}/${file}"
+	[[ -f ${COM_ATMOS_RESTART}/${file} ]] && rm -rf ${COM_ATMOS_RESTART}/${file}
+        /bin/mv -f "${file}" "${COM_ATMOS_RESTART}/${file}"
       done
       local idate=$(date --utc -d "${idate:0:8} ${idate:8:2} + ${restart_interval} hours" +%Y%m%d%H)
     done

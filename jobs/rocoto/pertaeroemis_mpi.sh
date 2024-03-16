@@ -372,6 +372,9 @@ EOF
     	        ${NCP} ${PERT_GDATE_TGT}/${FILE_CDATE}_forNextCycleWithStochInitTrue ./${FILE_CDATE}
             fi
 
+            #${NRM} ${PERT_GDATE_TGT}/${FILE_TGT_PRE}????????t??:??:??z.nc
+	    ${NRM} ${PERT_GDATE_TGT}/*.nc
+
             ${NMV} *.nc ${PERT_GDATE_TGT}/
 
             if [ ${EMIS_SRC} = "MEGAN" ]; then

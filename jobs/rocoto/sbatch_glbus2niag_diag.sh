@@ -15,7 +15,7 @@ module load python/3.7.5
 source config_hera2hpss
 
 NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
-module load hpss
+#module load hpss
 #export PATH="/apps/hpss/bin:$PATH"
 set -x
 
@@ -35,7 +35,8 @@ CD=${CDATE:6:2}
 CH=${CDATE:8:2}
 CYMD=${CDATE:0:8}
 
-ICNT=0
+CNTLDIR=${ROTDIR}/gdas.${CYMD}/${CH}
+ENKFDIR=${ROTDIR}/enkfgdas.${CYMD}/${CH}
 DATAHPSSDIR=${ARCHHPSSDIR}/${PSLOT}/dr-data-backup/${CDATE}
 DATANIAGDIR=${ARCHNIAGDIR}/${PSLOT}/dr-data-backup/${CDATE}
 
@@ -48,8 +49,8 @@ ICNT=$((${ICNT}+${ERR}))
 
 cd ${TMPDIR}
 GINPUT=GlobusInput.out
-GID=GlobusID_${CYMD}.out
-GID2=GlobusID_${CYMD}_YES.out
+GID=GlobusID_${CDATE}.out
+GID2=GlobusID_${CDATE}_YES.out
 [[ -f ${GINPUT} ]] && ${NRM} ${GINPUT}
 for TARFILE in ${TARFILES};do
     echo "${TARFILE}    ${TARFILE}" >> ${GINPUT}
@@ -67,7 +68,7 @@ ICNT=$((${ICNT}+${ERR}))
 
 if [ ${ICNT} -eq 0 ]; then
     echo "TAR and GLOBUS is successful at ${CDATE}"
-    echo "YES" > ${DATAHPSSDIR}/${GLBUSREC}
+    echo "SUCCESSFUL" > ${DATAHPSSDIR}/${GLBUSREC}
     globus transfer --notify failed,inactive ${ORIONEP}:${DATAHPSSDIR}/${GLBUSREC} ${NIAGEP}:${DATANIAGDIR}/${GLBUSREC} >& ${GID2}
 
     ERR=$?

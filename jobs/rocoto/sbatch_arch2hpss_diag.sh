@@ -28,9 +28,9 @@ RMDATE=${GDATE}
 RMDIR=${TMPDIR}/../${RMDATE}
 RMREC=${RMDIR}/remove.record
 
-if ( grep YES ${RMREC} ); then
-    ${NRM} ${RMDIR}
-fi
+#if ( grep YES ${RMREC} ); then
+#    ${NRM} ${RMDIR}
+#fi
 
 CY=${CDATE:0:4}
 CM=${CDATE:4:2}

@@ -15,7 +15,7 @@ source config_hera2hpss
 
 NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 
-module load hpss
+#module load hpss
 #export PATH="/apps/hpss/bin:$PATH"
 set -x
 
@@ -29,9 +29,9 @@ RMDATE=${GDATE}
 RMDIR=${TMPDIR}/../${RMDATE}
 RMREC=${RMDIR}/remove.record
 
-if ( grep YES ${RMREC} ); then
-    ${NRM} ${RMDIR}
-fi
+#if ( grep YES ${RMREC} ); then
+#    ${NRM} ${RMDIR}
+#fi
 
 CY=${CDATE:0:4}
 CM=${CDATE:4:2}

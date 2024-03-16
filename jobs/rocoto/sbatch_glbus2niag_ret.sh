@@ -56,8 +56,8 @@ ICNT=$((${ICNT}+${ERR}))
 
 cd ${TMPDIR}
 GINPUT=GlobusInput.out
-GID=GlobusID_${GYMD}.out
-GID2=GlobusID_${GYMD}_YES.out
+GID=GlobusID_${GDATE}.out
+GID2=GlobusID_${GDATE}_YES.out
 [[ -f ${GINPUT} ]] && ${NRM} ${GINPUT}
 for TARFILE in ${TARFILES};do
     echo "${TARFILE}    ${TARFILE}" >> ${GINPUT}
@@ -73,7 +73,7 @@ ICNT=$((${ICNT}+${ERR}))
 
 if [ ${ICNT} -eq 0 ]; then
     echo "TAR and GLOBUS is successful at ${GDATE}"
-    echo "YES" > ${DATAHPSSDIR}/${GLBUSREC}
+    echo "SUCCESSFUL" > ${DATAHPSSDIR}/${GLBUSREC}
     globus transfer --notify failed,inactive ${ORIONEP}:${DATAHPSSDIR}/${GLBUSREC} ${NIAGEP}:${DATANIAGDIR}/${GLBUSREC} >& ${GID2}
     ERR=$?
     ICNT=$((${ICNT}+${ERR}))
