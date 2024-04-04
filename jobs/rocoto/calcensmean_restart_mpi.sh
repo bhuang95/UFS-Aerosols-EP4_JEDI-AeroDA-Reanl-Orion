@@ -41,8 +41,9 @@ NMV="/bin/mv -f"
 NLN="/bin/ln -sf"
 NRM="/bin/rm -rf"
 
-FDATE=$(date +%Y%m%d%H -d "${CDATE:0:8} ${CDATE:8:2} + ${assim_freq} hours")
-
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
+#FDATE=$(date +%Y%m%d%H -d "${CDATE:0:8} ${CDATE:8:2} + ${assim_freq} hours")
+FDATE=$(${NDATE} +${assim_freq} ${CDATE})
 CYMD=${CDATE:0:8}
 CH=${CDATE:8:2}
 

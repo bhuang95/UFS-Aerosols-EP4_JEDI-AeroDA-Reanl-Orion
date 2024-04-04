@@ -8,6 +8,8 @@ RUNDIR="/work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl"
 XMLDIR="/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/dr-work-mpi/xmlFiles"
 DBDIR="${RUNDIR}/xmlDB/"
 NDATE="/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"
+rstat="/apps/contrib/rocoto/1.3.6/bin/rocotostat"
+rcmpl="/apps/contrib/rocoto/1.3.6/bin/rocotocomplete"
 
 MEMGRP=5
 NTASKS=8
@@ -31,7 +33,7 @@ for EXP in ${EXPS}; do
     [[ ! -d ${EXPDIR} ]] && mkdir -p ${EXPDIR}
     cd ${EXPDIR}
     if [ ! -f rstat.log ]; then
-        rocotostat -w ${XMLDIR}/${EXP}.xml -d ${DBDIR}/${EXP}.db -c ${CDATE}00 -m gdasefmn > rstat.log
+${rstat} -w ${XMLDIR}/${EXP}.xml -d ${DBDIR}/${EXP}.db -c ${CDATE}00 -m gdasefmn > rstat.log
 	
         grep "DEAD" rstat.log > failed.log
         grep "SUCCEEDED" rstat.log > succeeded.log
@@ -86,7 +88,7 @@ for EXP in ${EXPS}; do
 
                     if [ ${ICNT} -eq 0 ]; then
 			#echo "HBO-rocotocomplete -w ${XMLDIR}/${EXP}.xml -d ${DBDIR}/${EXP}.db -c ${CDATE}00 -t gdasefcs${FGRP}"
-	                rocotocomplete -w ${XMLDIR}/${EXP}.xml -d  ${DBDIR}/${EXP}.db -c ${CDATE}00 -t gdasefcs${FGRP}
+${rcmpl} -w ${XMLDIR}/${EXP}.xml -d  ${DBDIR}/${EXP}.db -c ${CDATE}00 -t gdasefcs${FGRP}
                         ERR=$?
 		        ICNT=$((${ICNT}+${ERR}))
 	                if [ ${ERR} -ne 0 ]; then

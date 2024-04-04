@@ -10,6 +10,7 @@ EXPS="
 AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v15_0dz0dp_41M_C96_202007
 AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v14_0dz0dp_41M_C96_201801
 AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v15_0dz0dp_1M_C96_202007
+AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801
 "
 
 FIELDS="
@@ -19,7 +20,10 @@ dr-data-backup
 
 
 for EXP in ${EXPS}; do
-    echo "Check DEAD task for ${EXP}"
+    #CDATE=$(cat ${XMLDIR}/../TaskRecords/cmplCycle_${EXP}.rc)
+    LOGS=$(ls -d ${RUNDIR}/${EXP}/dr-data/logs/20???????? | tail -n 1)
+    CDATE=$(basename ${LOGS})
+    echo "Check DEAD task for ${EXP}-${CDATE}"
     rocotostat -w ${XMLDIR}/${EXP}.xml -d ${DBDIR}/${EXP}.db > ${DBDIR}/rstat.log
     DEADTASK=$(grep "DEAD" ${DBDIR}/rstat.log)
     if [ ! -z "${DEADTASK}" ]; then
@@ -28,7 +32,11 @@ for EXP in ${EXPS}; do
 	echo "#####"
     fi
 
-    echo "Check DEAD task for ${EXP}_Diag"
+    #CDATE=${XMLDIR}/../TaskRecords/cmplCycle_${EXP}_Diag.rc
+    #CDATE=$(cat ${XMLDIR}/../TaskRecords/cmplCycle_${EXP}_diag.rc)
+    LOGS=$(ls -d ${RUNDIR}/${EXP}/dr-data-backup/logs/20???????? | tail -n 1)
+    CDATE=$(basename ${LOGS})
+    echo "Check DEAD task for ${EXP}_Diag-${CDATE}"
     rocotostat -w ${XMLDIR}/${EXP}_Diag.xml -d ${DBDIR}/${EXP}_Diag.db > ${DBDIR}/rstat.log
     DEADTASK=$(grep "DEAD" ${DBDIR}/rstat.log)
     if [ ! -z "${DEADTASK}" ]; then

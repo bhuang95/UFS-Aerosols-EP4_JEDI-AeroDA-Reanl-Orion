@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+set -x
 export HOMEgfs=${HOMEgfs:-"/home/Bo.Huang/JEDI-2020/expRuns/exp_UFS-Aerosols/cycExp_ATMA_warm/"}
 export EXPDIR=${EXPDIR:-"/home/Bo.Huang/JEDI-2020/UFS-Aerosols_NRTcyc/UFS-Aerosols_JEDI-AeroDA-1C192-20C192_NRT/dr-work/"}
 
@@ -42,6 +43,7 @@ export assim_freq=${assim_freq:-"6"}
 export job="diag_hofx"
 export jobid="${job}.$$"
 export DATA1=${DATA:-${DATAROOT}/${jobid}}
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 
 
 source ${HOMEjedi}/jedi_module_base.hera.sh
@@ -67,7 +69,8 @@ if [ ${ENSED} -gt ${NMEM_ENKF} ] || [ ${ENSST} -lt 0 ]; then
 fi
 
 
-GDATE=$(date +%Y%m%d%H -d "${CDATE:0:8} ${CDATE:8:2} - ${assim_freq} hours")
+#GDATE=$(date +%Y%m%d%H -d "${CDATE:0:8} ${CDATE:8:2} - ${assim_freq} hours")
+GDATE=$(${NDATE} -${assim_freq} ${CDATE})
 
 CYMD=${CDATE:0:8}
 CY=${CDATE:0:4}

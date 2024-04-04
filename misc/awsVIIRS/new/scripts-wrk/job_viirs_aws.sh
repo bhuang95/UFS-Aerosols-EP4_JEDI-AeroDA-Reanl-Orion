@@ -32,9 +32,9 @@ export PYTHONPATH=/work2/noaa/da/ytang/py39/lib/python3.9/site-packages
 export __LMOD_REF_COUNT_PYTHONPATH=$PYTHONPATH
 export CONDA_PYTHON_EXE=/work2/noaa/da/ytang/py39/bin/python
 
-SDATE=20171125 # in YYYYMMDDyy
-EDATE=20180105 # in YYYYMMDDyy
-DATADIR="/work/noaa/gsd-fv3-dev/bhuang/JEDI-FV3/expRuns/MISC/VIIRS-AWS/data"
+SDATE=20180812 # in YYYYMMDDyy
+EDATE=20180813 # in YYYYMMDDyy
+DATADIR="/work/noaa/gsd-fv3-dev/bhuang/JEDI-FV3/expRuns/MISC/VIIRS-AWS/data/${SDATE}-${EDATE}"
 PYEXE="/work/noaa/gsd-fv3-dev/bhuang/JEDI-FV3/expRuns/MISC/VIIRS-AWS/viirs_aws_download_globalmode_v1_bo.py"
 
 python ${PYEXE} ${SDATE} ${EDATE} ${DATADIR}

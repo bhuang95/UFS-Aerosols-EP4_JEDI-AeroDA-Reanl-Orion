@@ -33,8 +33,8 @@
 	<!ENTITY DMPDIR   "/work/noaa/zrtrr/bohuang/dump">
 
 	<!-- Experiment parameter setup -->
-	<!ENTITY SDATE "202008010000">
-	<!ENTITY EDATE "202008311800">
+	<!ENTITY SDATE "201803010000">
+	<!ENTITY EDATE "201804301800">
 	<!ENTITY INTERVAL "06:00:00">
 	<!ENTITY CYCINTHR "06">
 	<!ENTITY CDUMP_CNTL "gdas">

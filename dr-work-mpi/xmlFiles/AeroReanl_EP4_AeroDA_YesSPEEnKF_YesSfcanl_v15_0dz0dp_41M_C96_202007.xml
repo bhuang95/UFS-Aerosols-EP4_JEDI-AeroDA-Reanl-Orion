@@ -35,7 +35,7 @@
 
 	<!-- Experiment parameter setup -->
 	<!ENTITY SDATE "202007230600">
-	<!ENTITY EDATE "202008311800">
+	<!ENTITY EDATE "202010311800">
 	<!ENTITY INTERVAL "06:00:00">
 	<!ENTITY CYCINTHR "06">
 	<!ENTITY CDUMP_CNTL "gdas">
@@ -61,10 +61,10 @@
 	<!ENTITY CASE_ENKF     "C96">
 	<!ENTITY NMEMSGRPS "01-40">
 	<!--ENTITY CHGRESHPSSDIR "/BMC/fim/5year/MAPP_2018/bhuang/BackupGdas/chgres-&GFSVERSION;/"-->
-	<!ENTITY CHGRESHPSSDIR "/work/noaa/rstprod/bohuang/DataTransfer/FromNiag/AeroReanl/ChgresGDAS/chgres-&GFSVERSION;/">
+	<!ENTITY CHGRESHPSSDIR "/work/noaa/zrtrr/bohuang/DataTransfer/FromNiag/AeroReanl/ChgresGDAS/chgres-&GFSVERSION;/">
 	<!ENTITY METRETDIR "&ROTDIR;/RetrieveGDAS/">
 	<!ENTITY METRECORD "/home/Bo.Huang/JEDI-2020/UFS-Aerosols_NRTcyc/UFS-Aerosols_JEDI-AeroDA-1C192-20C192_NRT/misc/GDAS/CHGRESGDAS/&GFSVERSION;/record.chgres_hpss_htar_success_&GFSVERSION;">
-	<!ENTITY MISSGDASRECORD "/home/Bo.Huang/JEDI-2020/UFS-Aerosols_NRTcyc/UFS-Aerosols_JEDI-AeroDA-1C192-20C192_NRT/misc/GDAS/CHGRESGDAS/&GFSVERSION;/record.chgres_hpss_htar_allmissing_&GFSVERSION;">
+	<!ENTITY MISSGDASRECORD "&EXPDIR;/record.chgres_hpss_htar_allmissing_&GFSVERSION;">
 
 	<!-- Obs setup-->
 	<!ENTITY AODTYPE     "NOAA_VIIRS">
@@ -114,13 +114,13 @@
 	<!ENTITY PARTITION    "orion">
 	<!--ENTITY PARTITION_BIGMEM    "bigmem"-->
 	<!ENTITY PARTITION_BIGMEM    "orion">
-	<!ENTITY ACCOUNT    "rtrr">
+	<!ENTITY ACCOUNT    "wrfruc">
 	<!ENTITY QUEUE      "batch">
 	<!ENTITY QUEUE_DEB      "debug">
 	<!ENTITY SCHEDULER  "slurm">
 
 	<!-- ROCOTO task control -->
-	<!ENTITY MAXTRIES "3">
+	<!ENTITY MAXTRIES "2">
 	<!ENTITY CYCLETHROTTLE "1">
 	<!ENTITY TASKTHROTTLE  "20">
 

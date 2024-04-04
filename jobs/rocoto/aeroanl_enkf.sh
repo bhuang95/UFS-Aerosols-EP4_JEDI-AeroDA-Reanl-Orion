@@ -33,13 +33,14 @@ export CDUMP=${CDUMP:-${RUN:-"gfs"}}
 #export COMPONENT="atmos"
 export COMP_MOD_ATM_RST="model_data/atmos/restart"
 export COMP_CONF="conf"
-
+NDATE=${NDATE:-"/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion/misc/ndate/ndate"}
 
 ##############################################
 # Begin JOB SPECIFIC work
 ##############################################
 
-GDATE=$(date +%Y%m%d%H -d "${CDATE:0:8} ${CDATE:8:2} - ${assim_freq} hours")
+#GDATE=$(date +%Y%m%d%H -d "${CDATE:0:8} ${CDATE:8:2} - ${assim_freq} hours")
+GDATE=$(${NDATE} -${assim_freq} ${CDATE})
 export GDATE
 gPDY=${GDATE:0:8}
 export gcyc=${GDATE:8:2}

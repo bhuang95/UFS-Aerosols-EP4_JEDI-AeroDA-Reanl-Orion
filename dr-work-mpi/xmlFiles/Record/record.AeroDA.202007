@@ -1,4 +1,9 @@
 Run log
+AeroReanl_EP4_FreeRun_YesSPEEnKF_YesSfcanl_v15_0dz0dp_1M_C96_202007
+  # 2020092100
+      # GDAS cntl and mem001-005 restart files do not exist and copied from mem006
+
+
 AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v15_0dz0dp_41M_C96_202007
   # 2020070506:
       # gdasefcs05: mem024 failed and mem02 not completed, and copied mem001 and 002 for them

@@ -32,7 +32,7 @@ export OUTPUT_FILETYPE_SFC="netcdf"
 #HBO
 export NMEM_EFCSGRP=${NMEM_EFCSGRP:-"5"}
 export NMEM_EFCSGRP_GFS=${NMEM_EFCSGRP:-"5"}
-export RERUN_EFCSGRP="NO"
+export RERUN_EFCSGRP="YES"
 
 # Turn off inline UPP for EnKF forecast
 export WRITE_DOPOST=".false."
