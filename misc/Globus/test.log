@@ -1,0 +1,36 @@
++ RUNDIR=/work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl/
++ EXPS='
+AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801
+'
++ FLDS='
+dr-data
+dr-data-backup
+'
++ RCPRE=record.failed_GLBUS2NIAG
++ GLBUSJOB=sbatch_glbus2niag_ret.sh
++ for EXP in '${EXPS}'
++ for FLD in '${FLDS}'
++ '[' dr-data = dr-data ']'
++ GLBUSJOB=sbatch_glbus2niag_ret.sh
++ H2NDIR=/work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data/HERA2HPSS
++ cd /work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data/HERA2HPSS
++ awk -F - '{print $2}'
++ ls record.failed_GLBUS2NIAG-2018060100
+++ cat /work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data/HERA2HPSS/GLBUS_FAILED.log
++ for CDATE in '$(cat ${H2NDIR}/GLBUS_FAILED.log)'
++ '[' '!' -f /work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data/HERA2HPSS/record.failed_GLBUS2NIAG-2018060100-HERCULES ']'
++ mv /work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data/HERA2HPSS/record.failed_GLBUS2NIAG-2018060100 /work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data/HERA2HPSS/record.failed_GLBUS2NIAG-2018060100-HERCULES
++ cd /work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data/HERA2HPSS/2018060100
++ echo '/opt/slurm/bin/sbatch sbatch_glbus2niag_ret.sh'
+/opt/slurm/bin/sbatch sbatch_glbus2niag_ret.sh
++ for FLD in '${FLDS}'
++ '[' dr-data-backup = dr-data ']'
++ '[' dr-data-backup = dr-data-backup ']'
++ GLBUSJOB=sbatch_glbus2niag_diag.sh
++ H2NDIR=/work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data-backup/HERA2HPSS
++ cd /work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data-backup/HERA2HPSS
++ awk -F - '{print $2}'
++ ls 'record.failed_GLBUS2NIAG-??????????'
+ls: cannot access record.failed_GLBUS2NIAG-??????????: No such file or directory
+++ cat /work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl//AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801/dr-data-backup/HERA2HPSS/GLBUS_FAILED.log
++ exit 0

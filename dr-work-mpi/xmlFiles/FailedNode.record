@@ -4,3 +4,10 @@ gdaefcs
 12212 srun: error: Application launch failed: Communication connection failure
 12213 srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
 """
+
+3913  49: ufs_model.x: error: Invalid user for SlurmUser slurm, ignored
+3914  49: ufs_model.x: fatal: Unable to process configuration file
+Orion-05-38
+Orion-05-39
+Orion-05-40
+Orion-05-41

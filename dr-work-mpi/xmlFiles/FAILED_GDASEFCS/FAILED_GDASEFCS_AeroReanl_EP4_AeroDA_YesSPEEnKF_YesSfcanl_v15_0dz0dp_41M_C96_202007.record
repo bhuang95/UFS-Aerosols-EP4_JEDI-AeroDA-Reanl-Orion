@@ -16,3 +16,20 @@
     ** SUCCEEDED: grp07-mem033 replaced by grp01-mem003
     ** SUCCEEDED: grp07-mem034 replaced by grp01-mem004
     ** SUCCEEDED: grp07-mem035 replaced by grp01-mem005
+2020100718 at Fri Apr  5 20:50:24 CDT 2024
+    ** FAILED: replace failed members due to FNUM=8 larger than SNUM=0
+2020110418 at Sun Apr 14 12:15:22 CDT 2024
+    ** SUCCEEDED: grp04-mem020 replaced by grp01-mem005
+2020110900 at Mon Apr 15 05:55:17 CDT 2024
+    ** SUCCEEDED: grp03-mem011 replaced by grp01-mem001
+    ** SUCCEEDED: grp03-mem012 replaced by grp01-mem002
+    ** SUCCEEDED: grp03-mem013 replaced by grp01-mem003
+    ** SUCCEEDED: grp03-mem014 replaced by grp01-mem004
+    ** SUCCEEDED: grp03-mem015 replaced by grp01-mem005
+2020111400 at Tue Apr 16 02:55:16 CDT 2024
+    ** FAILED: replace failed members due to FNUM=8 larger than SNUM=0
+2020112718 at Fri Apr 19 18:06:37 CDT 2024
+    ** SUCCEEDED: grp06-mem027 replaced by grp01-mem002
+    ** SUCCEEDED: grp06-mem028 replaced by grp01-mem003
+    ** SUCCEEDED: grp06-mem029 replaced by grp01-mem004
+    ** SUCCEEDED: grp06-mem030 replaced by grp01-mem005

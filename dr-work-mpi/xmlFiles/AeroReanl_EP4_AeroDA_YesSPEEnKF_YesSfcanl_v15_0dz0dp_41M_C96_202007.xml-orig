@@ -15,7 +15,7 @@
 	    For now, SFCANL_RST="NO" to use sfc_data from past cycle
 	-->
 	<!-- Experiment directory setup -->
-	<!ENTITY PSLOT "AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v14_0dz0dp_41M_C96_201801">
+	<!ENTITY PSLOT "AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v15_0dz0dp_41M_C96_202007">
 	<!ENTITY HOMEgfs "/home/bohuang/Workflow/UFS-Aerosols_NRTcyc/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl-Orion">
 	<!--
 	<!ENTITY HOMEgfs "/scratch2/BMC/gsd-fv3-dev/MAPP_2018/bhuang/JEDI-2020/JEDI-FV3/MISC/UFS-Workflow/20231130/UFS-Aerosols-EP4_JEDI-AeroDA-Reanl">
@@ -34,8 +34,8 @@
 	<!ENTITY DMPDIR   "/work/noaa/zrtrr/bohuang/dump">
 
 	<!-- Experiment parameter setup -->
-	<!ENTITY SDATE "201802070000">
-	<!ENTITY EDATE "201805311800">
+	<!ENTITY SDATE "202007230600">
+	<!ENTITY EDATE "202010311800">
 	<!ENTITY INTERVAL "06:00:00">
 	<!ENTITY CYCINTHR "06">
 	<!ENTITY CDUMP_CNTL "gdas">
@@ -54,7 +54,7 @@
 	<!ENTITY ZERO_METINCS "'delp_inc','delz_inc','clwmr_inc','icmr_inc','liq_wat_inc'">
 
 	<!-- GDAS met setup-->
-	<!ENTITY GFSVERSION "v14">
+	<!ENTITY GFSVERSION "v15">
 	<!ENTITY METDIR_NRT  "&ROTDIR;/RetrieveGDAS/">
 	<!ENTITY CASE     "C96">
 	<!ENTITY CASE_CNTL     "C96">
@@ -114,16 +114,19 @@
 	<!ENTITY PARTITION    "orion">
 	<!--ENTITY PARTITION_BIGMEM    "bigmem"-->
 	<!ENTITY PARTITION_BIGMEM    "orion">
-	<!ENTITY ACCOUNT    "rtrr">
+	<!ENTITY ACCOUNT    "wrfruc">
 	<!ENTITY QUEUE      "batch">
 	<!ENTITY QUEUE_DEB      "debug">
 	<!ENTITY SCHEDULER  "slurm">
 
 	<!-- ROCOTO task control -->
-	<!ENTITY MAXTRIES "3">
+	<!ENTITY MAXTRIES "2">
 	<!ENTITY CYCLETHROTTLE "1">
 	<!ENTITY TASKTHROTTLE  "20">
-	<!ENTITY NATIVE_EXCNODE "--export=NONE --exclusive --exclude=Orion-[05,25]-[01-72]">
+	<!--
+	<!ENTITY NATIVE_EXCNODE "--export=NONE --exclusive --exclude=Orion-05-[01-72],orion-25-[01-64]">
+	-->
+	<!ENTITY NATIVE_EXCNODE "--export=NONE">
 
 	<!-- ROCOTO parameters that control workflow -->
 	<!ENTITY PARTITION_HPSS    "service">
@@ -138,45 +141,72 @@
 	<!ENTITY WALLTIME_CALCINC_GDAS  "00:29:00">
 	<!ENTITY RESOURCES_CALCINC_GDAS "1:ppn=1:tpp=1">
 	<!ENTITY MEMORIES_CALCINC_GDAS "80000M">
+	<!--
+	<!ENTITY NATIVE_CALCINC_GDAS    "&NATIVE_EXCNODE;">
+	-->
 	<!ENTITY NATIVE_CALCINC_GDAS    "--export=NONE">
 
 	<!ENTITY QUEUE_SIGP_GDAS     "&QUEUE;">
 	<!ENTITY WALLTIME_SIGP_GDAS  "00:29:00">
 	<!ENTITY RESOURCES_SIGP_GDAS "1:ppn=20:tpp=1">
 	<!ENTITY MEMORIES_SIGP_GDAS "80000M">
+	<!--
+	<!ENTITY NATIVE_SIGP_GDAS    "&NATIVE_EXCNODE;">
+	-->
 	<!ENTITY NATIVE_SIGP_GDAS    "--export=NONE --exclusive">
 
 	<!ENTITY QUEUE_ANAL_GDAS     "&QUEUE;">
 	<!ENTITY WALLTIME_ANAL_GDAS  "00:29:00">
 	<!ENTITY RESOURCES_ANAL_GDAS "36:ppn=4:tpp=1">
 	<!ENTITY MEMORIES_ANAL_GDAS "80000M">
+	<!--
 	<!ENTITY NATIVE_ANAL_GDAS    "&NATIVE_EXCNODE;">
+	-->
+	<!ENTITY NATIVE_ANAL_GDAS    "--export=NONE --exclusive --exclude=Orion-05-[30-50]">
 
 	<!ENTITY QUEUE_ANAL_ENKF_GDAS     "&QUEUE;">
 	<!ENTITY WALLTIME_ANAL_ENKF_GDAS  "00:29:00">
 	<!ENTITY RESOURCES_ANAL_ENKF_GDAS "12:ppn=12:tpp=1">
 	<!ENTITY MEMORIES_ANAL_ENKF_GDAS "80000M">
+	<!--
 	<!ENTITY NATIVE_ANAL_ENKF_GDAS    "&NATIVE_EXCNODE;">
+	-->
+	<!ENTITY NATIVE_ANAL_ENKF_GDAS    "--export=NONE --exclusive --exclude=Orion-05-[30-50]">
 
 	<!ENTITY QUEUE_DIAG_GDAS     "&QUEUE;">
 	<!ENTITY WALLTIME_DIAG_GDAS  "00:29:00">
 	<!ENTITY RESOURCES_DIAG_GDAS "1:ppn=24:tpp=1">
-	<!--ENTITY MEMORIES_DIAG_GDAS "100G"-->
+	<!--
+	<!ENTITY MEMORIES_DIAG_GDAS "100G">
+	-->
+	<!--
+	<!ENTITY NATIVE_DIAG_GDAS    "&NATIVE_EXCNODE;">
+	-->
 	<!ENTITY NATIVE_DIAG_GDAS    "--export=NONE --exclusive --exclude=Orion-05-[30-50]">
 
 	<!ENTITY QUEUE_FCST_GDAS     "&QUEUE;">
 	<!ENTITY WALLTIME_FCST_GDAS  "00:29:00">
 	<!ENTITY RESOURCES_FCST_GDAS "4:ppn=40:tpp=1">
+	<!--
 	<!ENTITY NATIVE_FCST_GDAS    "&NATIVE_EXCNODE;">
+	-->
+	<!ENTITY NATIVE_FCST_GDAS    "--export=NONE --exclude=Orion-05-[30-50]">
 
 	<!ENTITY QUEUE_EFCS_GDAS     "&QUEUE;">
 	<!ENTITY WALLTIME_EFCS_GDAS  "00:29:00">
 	<!ENTITY RESOURCES_EFCS_GDAS "4:ppn=40:tpp=1">
+	<!--
 	<!ENTITY NATIVE_EFCS_GDAS    "&NATIVE_EXCNODE;">
+	-->
+	<!ENTITY NATIVE_EFCS_GDAS    "--export=NONE --exclude=Orion-05-[30-50]">
+
 
 	<!ENTITY QUEUE_EMEAN_GDAS     "&QUEUE;">
 	<!ENTITY WALLTIME_EMEAN_GDAS  "00:29:00">
 	<!ENTITY RESOURCES_EMEAN_GDAS "1:ppn=6:tpp=1">
+	<!--
+	<!ENTITY NATIVE_EMEAN_GDAS    "&NATIVE_EXCNODE;">
+	-->
 	<!ENTITY NATIVE_EMEAN_GDAS    "--export=NONE">
 
 ]>
@@ -539,7 +569,7 @@
 		<partition>&PARTITION;</partition>
 		<walltime>&WALLTIME_DIAG_GDAS;</walltime>
 		<nodes>&RESOURCES_DIAG_GDAS;</nodes>
-		<native>&NATIVE_DIAG_GDAS;</native>
+  		<native>&NATIVE_DIAG_GDAS;</native>
 
 		<join><cyclestr>&ROTDIR;/logs/@Y@m@d@H/gdasaerodiag#grp#.log</cyclestr></join>
 

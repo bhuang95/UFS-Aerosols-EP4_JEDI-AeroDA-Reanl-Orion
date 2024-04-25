@@ -1,6 +1,6 @@
 #!/bin/bash
 
-module load rocoto
+#module load rocoto
 
 set -x 
 
@@ -17,8 +17,8 @@ NTRIES=3
 
 EXPS="
 AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v15_0dz0dp_41M_C96_202007
-AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v14_0dz0dp_41M_C96_201801
 "
+#AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v14_0dz0dp_41M_C96_201801
 
 for EXP in ${EXPS}; do
     RECDIR=${XMLDIR}/FAILED_GDASEFCS
@@ -52,7 +52,7 @@ ${rstat} -w ${XMLDIR}/${EXP}.xml -d ${DBDIR}/${EXP}.db -c ${CDATE}00 -m gdasefmn
                     STASK=$(sed -n ${IL}p succeeded.log | awk -F " " '{print $2}')
 		    FGRP=${FTASK:(-2)}
 		    SGRP=${STASK:(-2)}
-	            DGRP=$((${SGRP} - ${FGRP}))
+	            DGRP=$((10#${SGRP} - 10#${FGRP}))
             
 	            FMEM_ED=$((10#${FGRP} * 10#${MEMGRP}))
 	            FMEM_ST=$((${FMEM_ED} - ${MEMGRP} + 1))
