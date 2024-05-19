@@ -85,6 +85,9 @@ if [ ${ICNT} -eq 0 ]; then
     echo "YES" > ${TMPDIR}/remove.record
     ${NRM} ${DATAHPSSDIR}
 
+    if [ -f ${GLBUSRECORD} ]; then
+        ${NRM} ${GLBUSRECORD}
+    fi
 else
     echo "Globus failed at ${CDATE}" >> ${GLBUSRECORD}
     exit ${ICNT}
