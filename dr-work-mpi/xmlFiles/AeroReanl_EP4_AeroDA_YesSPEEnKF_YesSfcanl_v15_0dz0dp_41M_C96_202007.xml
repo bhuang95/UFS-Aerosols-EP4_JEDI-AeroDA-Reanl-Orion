@@ -114,7 +114,7 @@
 	<!ENTITY PARTITION    "orion">
 	<!--ENTITY PARTITION_BIGMEM    "bigmem"-->
 	<!ENTITY PARTITION_BIGMEM    "orion">
-	<!ENTITY ACCOUNT    "zrtrr">
+	<!ENTITY ACCOUNT    "rtrr">
 	<!ENTITY QUEUE      "batch">
 	<!ENTITY QUEUE_DEB      "debug">
 	<!ENTITY SCHEDULER  "slurm">
@@ -123,7 +123,7 @@
 	<!ENTITY MAXTRIES "3">
 	<!ENTITY CYCLETHROTTLE "1">
 	<!ENTITY TASKTHROTTLE  "20">
-	<!ENTITY NATIVE_EXCNODE "--export=NONE --exclusive --exclude=Orion-[05,16]-[01-25]">
+	<!ENTITY NATIVE_EXCNODE "--export=NONE --exclusive --exclude=Orion-05-[01-69]">
 
 	<!-- ROCOTO parameters that control workflow -->
 	<!ENTITY PARTITION_HPSS    "service">

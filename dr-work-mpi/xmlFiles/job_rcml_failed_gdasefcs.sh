@@ -53,7 +53,7 @@ ${rstat} -w ${XMLDIR}/${EXP}.xml -d ${DBDIR}/${EXP}.db -c ${CDATE}00 -m gdasefmn
 		    FGRP=${FTASK:(-2)}
 		    SGRP=${STASK:(-2)}
 		    FGRP10=$((10#${FGRP}))
-                    SGRP10=$((10#${FGRP}))
+                    SGRP10=$((10#${SGRP}))
 	            DGRP=$((${SGRP10} - ${FGRP10}))
             
 	            FMEM_ED=$((${FGRP10} * ${MEMGRP}))

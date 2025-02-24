@@ -4,24 +4,26 @@ set -x
 RUNDIR=/work/noaa/gsd-fv3-dev/bhuang/expRuns/UFS-Aerosols_RETcyc/AeroReanl/
 EXPS="
 AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v14_0dz0dp_41M_C96_201801
-AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801
 AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v15_0dz0dp_41M_C96_202007
+AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801
 AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v15_0dz0dp_1M_C96_202007
 "
 
+#AeroReanl_EP4_AeroDA_YesSPEEnKF_YesSfcanl_v14_0dz0dp_41M_C96_201801
+#AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v14_0dz0dp_1M_C96_201801
+#AeroReanl_EP4_FreeRun_NoSPE_YesSfcanl_v15_0dz0dp_1M_C96_202007
 FLDS="
-dr-data
-dr-data-backup
+dr-data-longfcst
+dr-data-longfcst-backup
 "
 
 RCPRE=record.failed_GLBUS2NIAG
-GLBUSJOB=sbatch_glbus2niag_ret.sh
 for EXP in ${EXPS}; do
 for FLD in ${FLDS}; do
-    if [ ${FLD} = "dr-data" ]; then
-        GLBUSJOB=sbatch_glbus2niag_ret.sh
-    elif [ ${FLD} = "dr-data-backup" ]; then
-        GLBUSJOB=sbatch_glbus2niag_diag.sh
+    if [ ${FLD} = "dr-data-longfcst" ]; then
+        GLBUSJOB=sbatch_glbus2niag_longfcst.sh
+    elif [ ${FLD} = "dr-data-longfcst-backup" ]; then
+        GLBUSJOB=sbatch_glbus2niag_longfcst_diag.sh
     else
         echo "No globus script matches and exit now"
 	exit 100
